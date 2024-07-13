@@ -47,7 +47,7 @@ export default function Header() {
             <FaMoon />
           </Button>
           <Link to='/sign-in'>
-            <Button className='w-20 h-9 px-2 py-1' style={{ background: 'linear-gradient(to right, #8A2BE2, #1E90FF)' }}>
+            <Button className='w-20 h-9 px-2 py-1'style={{ background: 'linear-gradient(to right, #8A2BE2, #1E90FF)'}} >
               Sign In
             </Button>
           </Link>

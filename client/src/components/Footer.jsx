@@ -1,7 +1,7 @@
 import React from 'react';
 import { Footer, FooterLinkGroup, FooterTitle } from 'flowbite-react';
 import { Link } from 'react-router-dom';
-import {BsFacebook,BsInstagram,BsTwitter,BsGithub,BsDribbble} from 'react-icons/bs';
+import { BsFacebook, BsInstagram, BsTwitter, BsGithub, BsDribbble } from 'react-icons/bs';
 
 export default function FooterCom() {
   return (
@@ -15,7 +15,7 @@ export default function FooterCom() {
           </div>
           <div className='grid grid-cols-2 gap-8 mt-4 sm:grid-cols-3 sm:gap-6'>
             <div>
-              <FooterTitle title='about'/>
+              <FooterTitle title='About' />
               <FooterLinkGroup col>
                 <a 
                   href='https://www.100jsprojects.com'
@@ -36,7 +36,7 @@ export default function FooterCom() {
               </FooterLinkGroup>
             </div>
             <div>
-              <FooterTitle title='Follow Us'/>
+              <FooterTitle title='Follow Us' />
               <FooterLinkGroup col>
                 <a 
                   href='https://www.github.com/HirukaWarnakula'
@@ -55,7 +55,7 @@ export default function FooterCom() {
               </FooterLinkGroup>
             </div>
             <div>
-              <FooterTitle title='Legal'/>
+              <FooterTitle title='Legal' />
               <FooterLinkGroup col>
                 <a 
                   href='#'
@@ -73,20 +73,17 @@ export default function FooterCom() {
             </div>
           </div>
         </div>
-        <Footer.Divider/>
+        <Footer.Divider />
         <div className='w-full sm:flex sm:items-center sm:justify-between'>
-            <Footer.Copyright href='#' by="Hiruka's Blog" year={new Date().getFullYear()}/>
-        <div className='flex gap-6 sm:mt-0 mt-4 sm:justify-center'>
-            <Footer.Icon href= '#' icon={BsFacebook}/>
-            <Footer.Icon href= '#' icon={BsInstagram}/>
-            <Footer.Icon href= '#' icon={BsTwitter}/>
-            <Footer.Icon href= 'https://github.com/HirukaWarnakula' icon={BsGithub}/>
-            <Footer.Icon href= '#' icon={BsDribbble}/>
+          <Footer.Copyright href='#' by="Hiruka's Blog" year={new Date().getFullYear()} />
+          <div className='flex gap-6 sm:mt-0 mt-4 sm:justify-center'>
+            <Footer.Icon href='#' icon={BsFacebook} />
+            <Footer.Icon href='#' icon={BsInstagram} />
+            <Footer.Icon href='#' icon={BsTwitter} />
+            <Footer.Icon href='https://github.com/HirukaWarnakula' icon={BsGithub} />
+            <Footer.Icon href='#' icon={BsDribbble} />
+          </div>
         </div>
-
-
-        </div>
-
       </div>
     </Footer>
   );

@@ -4,7 +4,7 @@ import { Link, useLocation } from 'react-router-dom';
 import React, { useEffect, useState } from 'react';
 import styled from 'styled-components';
 
-const StyledSidebarItem = styled(Sidebar.Item)`
+const StyledSidebarItem = styled.div`
   display: flex;
   align-items: center;
   padding: 10px;
@@ -43,14 +43,14 @@ export default function DashSidebar() {
                 <Sidebar.ItemGroup>
                     <Link to='/dashboard?tab=profile'>
                         <StyledSidebarItem
-                            active={tab === 'profile'}
-                            icon={HiUser}
                             className={tab === 'profile' ? 'active' : ''}
                         >
+                            <HiUser className="icon" />
                             Profile
                         </StyledSidebarItem>
                     </Link>
-                    <StyledSidebarItem icon={HiArrowSmRight} className='cursor-pointer'>
+                    <StyledSidebarItem className='cursor-pointer'>
+                        <HiArrowSmRight className="icon" />
                         Sign Out
                     </StyledSidebarItem>
                 </Sidebar.ItemGroup>

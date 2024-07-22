@@ -11,11 +11,17 @@ export const updateUser = async (req, res, next) => {
     return next(errorHandler(400, 'You are not allowed to update this user'));
   }
 
+  const updateData = {};
+
   if (req.body.password) {
     if (req.body.password.length < 6) {
       return next(errorHandler(400, 'Password must be at least 6 characters'));
     }
-    req.body.password = bcrypt.hashSync(req.body.password, 10);
+    try {
+      updateData.password = await bcrypt.hash(req.body.password, 10);
+    } catch (error) {
+      return next(errorHandler(500, 'Error hashing password'));
+    }
   }
 
   if (req.body.username) {
@@ -31,21 +37,27 @@ export const updateUser = async (req, res, next) => {
     if (!req.body.username.match(/^[a-zA-Z0-9]+$/)) {
       return next(errorHandler(400, 'Username must contain only letters and numbers'));
     }
+    updateData.username = req.body.username;
+  }
+
+  if (req.body.email) {
+    updateData.email = req.body.email;
+  }
+
+  if (req.body.profilePicture) {
+    updateData.profilePicture = req.body.profilePicture;
   }
 
   try {
     const updatedUser = await User.findByIdAndUpdate(
       req.params.userId,
-      {
-        $set: {
-          username: req.body.username,
-          email: req.body.email,
-          profilePicture: req.body.profilePicture,
-          password: req.body.password,
-        },
-      },
+      { $set: updateData },
       { new: true }
     );
+
+    if (!updatedUser) {
+      return next(errorHandler(404, 'User not found'));
+    }
 
     const { password, ...rest } = updatedUser._doc;
     res.status(200).json(rest);

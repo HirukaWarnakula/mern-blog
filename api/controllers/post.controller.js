@@ -18,6 +18,7 @@ export const create = async (req, res,next) => {
         res.status(201).json(savedPost);
     }catch(error){
         next(error);
+
     }
 
 };

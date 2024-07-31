@@ -198,7 +198,7 @@ export default function DashProfile() {
           {loading ? 'Loading...' : 'Update'}
         </Button>
         {currentUser.isAdmin && (
-          <Link to={'/create-post'}>
+          <Link to={'create-post'}>
             <Button
               type='button'
               style={{ background: 'linear-gradient(to right, #8A2BE2, #1E90FF)' }}

@@ -9,6 +9,7 @@ import { updateStart, updateSuccess, updateFailure, deleteUserStart, deleteUserS
 import { HiOutlineExclamationCircle } from 'react-icons/hi';
 import { Link } from 'react-router-dom';
 
+
 const FILE_SIZE_LIMIT = 2 * 1024 * 1024; // 2MB
 
 export default function DashProfile() {

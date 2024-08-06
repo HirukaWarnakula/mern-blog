@@ -1,10 +1,10 @@
 import { Sidebar } from "flowbite-react";
-import { HiArrowSmRight, HiUser } from "react-icons/hi";
+import { HiArrowSmRight, HiDocumentText, HiUser } from "react-icons/hi";
 import { Link, useLocation } from 'react-router-dom';
 import React, { useEffect, useState } from 'react';
 import styled from 'styled-components';
 import { signoutSuccess } from '../redux/user/userSlice';
-import { useDispatch } from 'react-redux';
+import { useSelector, useDispatch } from 'react-redux';
 
 const StyledSidebarItem = styled.div`
   display: flex;
@@ -25,12 +25,15 @@ const StyledSidebarItem = styled.div`
   .icon {
     margin-right: 10px;
   }
-`;
 
+  margin-bottom: 10px; /* Adjust this value to control the space between items */
+`;
 export default function DashSidebar() {
     const location = useLocation();
     const dispatch = useDispatch();
     const [tab, setTab] = useState('');
+    const { theme } = useSelector(state => state.theme);
+    const { currentUser } = useSelector(state => state.user);
 
     useEffect(() => {
         const urlParams = new URLSearchParams(location.search);
@@ -41,36 +44,44 @@ export default function DashSidebar() {
     }, [location.search]);
 
     const handleSignout = async () => {
-
-        try{
-          const res = await fetch('/api/user/signout', {
-            method: 'POST',
-            
-          });
-          const data = await res.json();
-          if(!res.ok){
-            console.log(data.message);
-          }else{
-            dispatch(signoutSuccess());
-      
-          }
-      
-        }catch(error){
-          console.log(error.message);
+        try {
+            const res = await fetch('/api/user/signout', {
+                method: 'POST',
+            });
+            const data = await res.json();
+            if (!res.ok) {
+                console.log(data.message);
+            } else {
+                dispatch(signoutSuccess());
+            }
+        } catch (error) {
+            console.log(error.message);
         }
-      };
+    };
 
     return (
-        <Sidebar className="w-full md:w-56">
+        <Sidebar className={`sidebar ${theme === 'dark' ? 'bg-gray-800 text-gray-200' : 'bg-white text-gray-700'}`}>
             <Sidebar.Items>
-                <Sidebar.ItemGroup>
+                <Sidebar.ItemGroup className="flex flex-col gap-5">
                     <Link to='/dashboard?tab=profile'>
-                        <StyledSidebarItem
-                            className={tab === 'profile' ? 'active' : ''}
+                        <Sidebar.Item
+                            active={tab === 'profile'}
+                            icon={HiUser}
+                            label={currentUser.isAdmin ? 'Admin' : 'User'}
+                            labelColor='dark'
+                            as='div'
                         >
-                            <HiUser className="icon" />
                             Profile
-                        </StyledSidebarItem>
+                        </Sidebar.Item>
+                    </Link>
+                    <Link to='/dashboard?tab=posts'>
+                        <Sidebar.Item
+                            active={tab === 'posts'}
+                            icon={HiDocumentText}
+                            as='div'
+                        >
+                            Posts
+                        </Sidebar.Item>
                     </Link>
                     <StyledSidebarItem className='cursor-pointer' onClick={handleSignout}>
                         <HiArrowSmRight className="icon" />
@@ -81,4 +92,3 @@ export default function DashSidebar() {
         </Sidebar>
     );
 }
-

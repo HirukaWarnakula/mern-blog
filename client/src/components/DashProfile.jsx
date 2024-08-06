@@ -9,7 +9,6 @@ import { updateStart, updateSuccess, updateFailure, deleteUserStart, deleteUserS
 import { HiOutlineExclamationCircle } from 'react-icons/hi';
 import { Link } from 'react-router-dom';
 
-
 const FILE_SIZE_LIMIT = 2 * 1024 * 1024; // 2MB
 
 export default function DashProfile() {
@@ -192,18 +191,17 @@ export default function DashProfile() {
         </div>
         {imageFileUploadError && <Alert color='failure'>{imageFileUploadError}</Alert>}
         {error && <Alert color='failure'>{error}</Alert>}
-        <TextInput type='text' id='username' placeholder='username' defaultValue={currentUser.username || ''} onChange={handleChange} />
-        <TextInput type='email' id='email' placeholder='email' defaultValue={currentUser.email || ''} onChange={handleChange} />
-        <TextInput type='password' id='password' placeholder='password' onChange={handleChange} />
-        <Button type='submit' style={{ background: 'linear-gradient(to right, #8A2BE2, #1E90FF)' }} outline disabled={loading || imageFileUploading}>
+        <TextInput className="bg-white text-gray-700 dark:bg-[rgb(16,23,42)] dark:text-gray-200" type='text' id='username' placeholder='username' defaultValue={currentUser.username || ''} onChange={handleChange} />
+        <TextInput className="bg-white text-gray-700 dark:bg-[rgb(16,23,42)] dark:text-gray-200" type='email' id='email' placeholder='email' defaultValue={currentUser.email || ''} onChange={handleChange} />
+        <TextInput className="bg-white text-gray-700 dark:bg-[rgb(16,23,42)] dark:text-gray-200" type='password' id='password' placeholder='password' onChange={handleChange} />
+        <Button type='submit' className="bg-gradient-to-r from-purple-500 to-blue-500 text-white dark:from-purple-700 dark:to-blue-700" outline disabled={loading || imageFileUploading}>
           {loading ? 'Loading...' : 'Update'}
         </Button>
         {currentUser.isAdmin && (
           <Link to={'/create-post'}>
             <Button
               type='button'
-              style={{ background: 'linear-gradient(to right, #8A2BE2, #1E90FF)' }}
-              className='w-full'
+              className="bg-gradient-to-r from-purple-500 to-blue-500 text-white dark:from-purple-700 dark:to-blue-700 w-full"
             >
               Create a Post
             </Button>

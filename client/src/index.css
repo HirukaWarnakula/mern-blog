@@ -1,6 +1,10 @@
+@import 'flowbite';
+
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+
 
 body {
 
@@ -9,3 +13,5 @@ body {
 .ql-editor {
    font-size: 1.05rem;
 }   
+
+  

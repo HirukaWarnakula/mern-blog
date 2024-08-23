@@ -18,8 +18,8 @@ const postSchema = new mongoose.Schema(
         },
         Image:{
             type:String,
-            default:"https://www.hostinger.com/tutorials/wp-content/uploads/sites/2/2021/09/how-to-write-a-blog-post.png",
-            
+            default:"https://www.hostinger.com/tutorials/wp-content/uploads/sites/2/2021/09/how-to-write-a-blog-post.png"
+   
         },
         category:{
             type:String,
@@ -35,9 +35,11 @@ const postSchema = new mongoose.Schema(
 
 
         },{timestamps:true}
-    
+
+           
 
 );
+
 const Post =mongoose.model('post',postSchema);
 
 export default Post;
